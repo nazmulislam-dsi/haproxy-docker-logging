@@ -2,10 +2,15 @@ version: "3.7"
 
 services:
   haproxy:
-    image: haproxy-docker-logging:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: haproxy:log
+
     ports:
     - 8080:8080
     - 80:80
+    
     volumes:
     - ./conf/haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
     - ./conf/rsyslogs-haproxy.conf:/etc/rsyslog.d/rsyslogs-haproxy.conf
