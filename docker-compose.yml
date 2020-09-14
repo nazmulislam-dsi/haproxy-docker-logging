@@ -7,6 +7,5 @@ services:
     - 8080:8080
     - 80:80
     volumes:
-    - ./haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
-    - ./rsyslogs-haproxy.conf:/etc/rsyslog.d/rsyslogs-haproxy.conf:ro
-    - ./logs:/var/log/haproxy 
+    - ./conf/haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
+    - ./logs:/var/log/haproxy
