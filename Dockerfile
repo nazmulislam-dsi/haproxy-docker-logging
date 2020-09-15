@@ -9,9 +9,8 @@ RUN apt-get update && \
     sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/haproxy && \
     mkdir -p /var/haproxy /var/log/haproxy /etc/supervisord.d && \
     touch /var/log/haproxy/haproxy.log /var/log/haproxy/haproxy-admin.log && \
-    rm -rf /etc/rsyslog.d/49-haproxy.conf && \
-    chown -R syslog:adm /var/log/haproxy/
-
+    rm -rf /etc/rsyslog.d/49-haproxy.conf
+    
 COPY ./conf/rsyslogs-haproxy.conf /etc/rsyslog.d/
 COPY ./conf/logrotate-haproxy.conf /etc/logrotate.d/
 COPY ./conf/supervisord-haproxy.conf /etc/supervisor/conf.d/
