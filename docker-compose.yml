@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.0"
 
 services:
   haproxy:
@@ -9,8 +9,17 @@ services:
 
     ports:
     - 8080:8080
-    - 80:80
+    - 8000:80
     
     volumes:
-    - ./conf/haproxy.cfg:/etc/haproxy/haproxy.cfg:ro
+    - ./conf/haproxy.anwar.cfg:/etc/haproxy/haproxy.cfg:ro
     - ./logs:/var/log/haproxy
+    
+    - ./conf/rsyslogs-haproxy.conf:/etc/rsyslog.d/rsyslogs-haproxy.conf
+    # - ./conf/logrotate-haproxy.conf /etc/logrotate.d/logrotate-haproxy.conf
+    # - ./conf/supervisord-haproxy.conf /etc/supervisor/conf.d/supervisord-haproxy.conf
+    # - ./conf/rsyslog.conf /etc/rsyslog.conf
+    # - ./conf/supervisord.conf /etc/supervisor/supervisord.conf
+  
+  myservice:
+    image: nginx:latest
