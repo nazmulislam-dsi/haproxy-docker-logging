@@ -11,9 +11,12 @@ RUN apt-get update && \
     touch /var/log/haproxy/haproxy.log /var/log/haproxy/haproxy-admin.log && \
     rm -rf /etc/rsyslog.d/49-haproxy.conf
     
-COPY ./conf/rsyslogs-haproxy.conf /etc/rsyslog.d/
+# COPY ./conf/rsyslogs-haproxy.conf /etc/rsyslog.d/
 COPY ./conf/logrotate-haproxy.conf /etc/logrotate.d/
 COPY ./conf/supervisord-haproxy.conf /etc/supervisor/conf.d/
 COPY ./conf/rsyslog.conf /etc/rsyslog.conf
+
+RUN sed -i '/imklog/s/^/#/' /etc/rsyslog.conf
+
 
 CMD ["/usr/bin/supervisord"]
